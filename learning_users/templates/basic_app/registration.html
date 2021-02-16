@@ -1,0 +1,30 @@
+<!DOCTYPE html> <!-- This line is optional. But it is a good practice of coding -->
+{% extends "basic_app/base.html" %}
+{% load static %}
+  {% block body_block %}<!-- Here indentaion for readability -->
+
+    <div class="jumbotron">
+      {% if registered %} <!-- we made this link in the context_dic in views.py file -->
+
+        <h1>Thank you for registering!</h1>
+      {% else %}
+        <h1>Register Here!</h1>
+        <h3>Fill out the form please:</h3>
+
+        <!-- Now we create the FORM using Template-taging -->
+        <form enctype="multipart/form-data" method="POST">
+        <!-- Because we are going to uploading multimedia data suc as image file, so we must use this line (enctype="multipart/form-data") -->
+
+            {% csrf_token %} <!-- This is for the security purpose -->
+            {{ user_form.as_p}} <!-- This line for the "base FORM" of user -->
+            {{ profile_form.as_p }} <!-- Grabbing other Form attributes element that we created in the forms.py-->
+            <!-- 'user_form' and 'profile_form' are defines in the views.py as dictionary-->
+
+            <input type="submit"  value="Register">
+
+        </form>
+
+      {% endif %}
+    </div>
+
+  {% endblock %}

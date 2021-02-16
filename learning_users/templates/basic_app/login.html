@@ -1,0 +1,25 @@
+{% extends "basic_app/base.html" %}
+  {% block body_block %} <!-- Here indentaion for readability -->
+
+
+  <div class="jumbotron">
+    <h1>Please login</h1>
+    <!-- I will add a button here that will take a user to a registration page for user who havnt registered yet-->
+
+    <!-- We are doing something this time with "ACTION" -->
+    <form action="{% url 'basic_app:user_login' %}" method="post">
+      {% csrf_token %}
+      <!-- If we create Form, we should always use "csrf_token" for security -->
+
+      <!-- We create here HTML style FORM We could create another <form> tag -->
+      <label for="username">Username:</label><!--  -->
+      <input type="text" name="username" value="Enter Username">
+
+      <label for="password">Password</label>
+      <input type="password" name="password">
+
+      <input type="submit" name="" value="Login">
+
+    </form>
+  </div>  <!-- End JUMBOTRON -->
+  {% endblock %}
